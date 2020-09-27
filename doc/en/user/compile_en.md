@@ -53,7 +53,7 @@ cd <path_to_tnn>/scripts
  SHARED_LIB="ON"                # ON for dynamic lib，OFF for static lib
  ARM="ON"                       # ON to build for ARM CPU
  OPENMP="ON"                    # ON to build for OpenMP
- OPENCL="ON"                    # ON to build for GPU
+ OPENCL="ON"                    # ON to build for GPU OPENCL
  SHARING_MEM_WITH_OPENGL=0      # 1 for sharing OpenGL texture with openCL
 ```
 3）execute the building script
@@ -78,12 +78,12 @@ After the compilation is completed, the corresponding `armeabi-v7a` library, the
 ```
 cd <path_to_tnn>/scripts
 ```
-2）edit `build_arm_linux.sh` or `build_arm32hf_linux.sh` to config the building options  
+2）edit `build_aarch64_linux.sh` or `build_armhf_linux.sh` to config the building options  
 ```
  SHARED_LIB="ON"                # ON for dynamic lib，OFF for static lib
  ARM="ON"                       # ON to build for ARM CPU
  OPENMP="ON"                    # ON表示打开OpenMP
- OPENCL="OFF"                   # ON to build for GPU
+ OPENCL="OFF"                   # ON to build for GPU OPENCL
  #for arm64:
  CC=aarch64-linux-gnu-gcc       # set compiler for aarch64 C
  CXX=aarch64-linux-gnu-g++      # set compiler for aarch64 C++
@@ -95,14 +95,14 @@ cd <path_to_tnn>/scripts
 ```
 3）execute the building script
 ```
-./build_arm_linux.sh
+./build_aarch64_linux.sh  or  ./build_armhf_linux.sh
 ```
 
 ## Description for build options 
 
 |Option|Default|Description|
 |------|:---:|----|
-|TNN_CPU_ENABLE| OFF | Code source/device/cpu compilation switch, the code is only used for debugging and UnitTest benchmark test, the implementation is all c ++ code, does not contain specific CPU acceleration instructions.|
+|TNN_NAIVE_ENABLE| OFF | Code source/device/cpu compilation switch, the code is only used for debugging and UnitTest benchmark test, the implementation is all c ++ code, does not contain specific CPU acceleration instructions.|
 |TNN_X86_ENABLE| OFF | The code source/device/x86 compilation switch is currently adapted to the openvino implementation, and more accelerated code implementation will be moved in later.|
 |TNN_ARM_ENABLE| OFF | Code source/device/arm compilation switch, the code contains neon acceleration instructions, and partially implements int8 acceleration.|
 |TNN_METAL_ENABLE| OFF | Code source/device/metal compilation switch, the code contains metal acceleration instructions.|
@@ -115,7 +115,7 @@ cd <path_to_tnn>/scripts
 |TNN_OPENMP_ENABLE| OFF | OpenMP switch, control whether to open openmp acceleration.|
 |TNN_BUILD_SHARED| ON | The dynamic library compilation switch, close to compile the static library.|
 |TNN_TEST_ENABLE| OFF | test code compilation switch|
-|TNN_UNIT_TEST_ENABLE| OFF | Unit test compilation switch, open the unit test compilation switch will automatically turn on the TNN_CPU_ENABLE switch, as a test benchmark.|
+|TNN_UNIT_TEST_ENABLE| OFF | Unit test compilation switch, open the unit test compilation switch will automatically turn on the TNN_NAIVE_ENABLE switch, as a test benchmark.|
 |TNN_PROFILER_ENABLE| OFF | Performance debugging switch, after opening it will print more performance information, only for debugging.|
 |TNN_QUANTIZATION_ENABLE| OFF | Quantization tool compilation switch|
 |TNN_BENCHMARK_MODE| OFF | Benchmark switch, after opening, the model weights file is empty, and data can be automatically generated.|
